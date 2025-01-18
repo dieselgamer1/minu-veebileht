@@ -155,7 +155,7 @@
     <header>
         <h1>Up n Atom Tellimuste Süsteem</h1>
         <div class="radio-player">
-            <audio controls>
+            <audio id="radio" controls>
                 <source src="https://rm.nlrp.ee/listen/nlfm/radio.mp3" type="audio/mpeg">
                 Teie brauser ei toeta raadiomängijat.
             </audio>
@@ -212,6 +212,12 @@
     <script>
         const order = [];
         let dailyTotal = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const radio = document.getElementById('radio');
+            radio.volume = 0.1; // Set volume to low
+            radio.play(); // Auto play radio
+        });
 
         function addToOrder(item, price, button) {
             const existingItem = order.find(orderItem => orderItem.name === item);
