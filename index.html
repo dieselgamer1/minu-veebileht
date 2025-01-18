@@ -149,36 +149,36 @@
         <div id="menu">
             <div class="menu-item">
                 <span>Bleeder Burger - $65</span>
-                <button onclick="addToOrder('Bleeder Burger', 65, this)">Lisa</button>
+                <button onclick="addToOrder('Bleeder Burger', 65)">Lisa</button>
             </div>
             <div class="menu-item">
                 <span>Moneyshot Burger - $67</span>
-                <button onclick="addToOrder('Moneyshot Burger', 67, this)">Lisa</button>
+                <button onclick="addToOrder('Moneyshot Burger', 67)">Lisa</button>
             </div>
             <div class="menu-item">
                 <span>Torpedo Burger - $64</span>
-                <button onclick="addToOrder('Torpedo Burger', 64, this)">Lisa</button>
+                <button onclick="addToOrder('Torpedo Burger', 64)">Lisa</button>
             </div>
             <div class="menu-item">
                 <span>Heartstopper Burger - $84</span>
-                <button onclick="addToOrder('Heartstopper Burger', 84, this)">Lisa</button>
+                <button onclick="addToOrder('Heartstopper Burger', 84)">Lisa</button>
             </div>
             <div class="menu-item">
                 <span>Vegan Burger - $63</span>
-                <button onclick="addToOrder('Vegan Burger', 63, this)">Lisa</button>
+                <button onclick="addToOrder('Vegan Burger', 63)">Lisa</button>
             </div>
             <div class="menu-item">
                 <span>Friikartul - $63</span>
-                <button onclick="addToOrder('Friikartul', 63, this)">Lisa</button>
+                <button onclick="addToOrder('Friikartul', 63)">Lisa</button>
             </div>
             <h2>JOOGID</h2>
             <div class="menu-item">
                 <span>Limonaad - $45</span>
-                <button onclick="addToOrder('Limonaad', 45, this)">Lisa</button>
+                <button onclick="addToOrder('Limonaad', 45)">Lisa</button>
             </div>
             <div class="menu-item">
                 <span>Maasika-piimakokteil - $65</span>
-                <button onclick="addToOrder('Maasika-piimakokteil', 65, this)">Lisa</button>
+                <button onclick="addToOrder('Maasika-piimakokteil', 65)">Lisa</button>
             </div>
         </div>
     </div>
@@ -196,7 +196,7 @@
         const order = [];
         let dailyTotal = 0;
 
-        function addToOrder(item, price, button) {
+        function addToOrder(item, price) {
             const existingItem = order.find(orderItem => orderItem.name === item);
 
             if (existingItem) {
