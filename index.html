@@ -216,7 +216,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             const radio = document.getElementById('radio');
             radio.volume = 0.1; // Set volume to low
-            radio.play(); // Auto play radio
+
+            // Ensure radio starts after user interaction
+            document.body.addEventListener('click', () => {
+                if (radio.paused) {
+                    radio.play();
+                }
+            }, { once: true });
         });
 
         function addToOrder(item, price, button) {
