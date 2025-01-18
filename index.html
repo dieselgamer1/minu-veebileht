@@ -12,9 +12,11 @@
             background: linear-gradient(to right, #c9d6ff, #e2e2e2);
             color: #333;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-start;
             min-height: 100vh;
+            overflow-x: hidden;
         }
         header {
             background: #333;
@@ -39,7 +41,7 @@
         }
         h1 {
             margin: 0;
-            font-size: 2em;
+            font-size: 2.5em;
         }
         .container {
             margin-top: 140px;
@@ -47,14 +49,16 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 500px;
+            flex: 1;
+            max-width: 45%;
+            position: relative;
         }
         .menu-item {
             margin: 15px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
         .menu-item span {
             font-size: 1.2em;
@@ -143,33 +147,6 @@
             100% {
                 transform: scale(1);
                 background-color: #28a745;
-            }
-        }
-
-        @media (max-width: 768px) {
-            header {
-                font-size: 1.2em;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
-            .container {
-                margin-top: 100px;
-                padding: 15px;
-                width: 95%;
-            }
-            .menu-item span {
-                font-size: 1em;
-            }
-            .menu-item button {
-                padding: 8px 12px;
-                font-size: 0.9em;
-            }
-            .summary {
-                font-size: 1em;
-            }
-            .total {
-                font-size: 1.2em;
             }
         }
     </style>
