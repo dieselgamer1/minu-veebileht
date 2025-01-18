@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Up n Atom Tellimuste Süsteem</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #333;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-start;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        .radio-player {
+            margin-top: 10px;
+            padding: 10px;
+            background: #444;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .radio-player audio {
+            width: 100%;
+            height: 40px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .container {
+            margin-top: 140px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            flex: 1;
+            max-width: 45%;
+            position: relative;
+        }
+        .menu-item {
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .menu-item span {
+            font-size: 1.2em;
+        }
+        .menu-item button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .menu-item button:hover {
+            background: #218838;
+        }
+        h2 {
+            color: #007BFF;
+            margin-top: 30px;
+        }
+        .order-list {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        .order-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .order-list button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .order-list button:hover {
+            background: #c82333;
+        }
+        .total {
+            margin-top: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: red;
+            text-align: right;
+        }
+        .fly {
+            position: absolute;
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            opacity: 1;
+            animation: flyToOrder 5s ease-in-out;
+        }
+        @keyframes flyToOrder {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(500px, 0);
+                opacity: 0;
+            }
+        }
+        .summary {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: left;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .summary button {
+            background: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Up n Atom Tellimuste Süsteem</h1>
+        <div class="radio-player">
+            <audio controls>
+                <source src="https://rm.nlrp.ee/listen/nlfm/radio.mp3" type="audio/mpeg">
+                Teie brauser ei toeta raadiomängijat.
+            </audio>
+        </div>
+    </header>
+    <div class="container">
+        <h2>Menüü</h2>
+        <div id="menu">
+            <div class="menu-item">
+                <span>Bleeder Burger - $65</span>
+                <button onclick="addToOrder('Bleeder Burger', 65, this)">Lisa</button>
+            </div>
+            <div class="menu-item">
+                <span>Moneyshot Burger - $67</span>
+                <button onclick="addToOrder('Moneyshot Burger', 67, this)">Lisa</button>
+            </div>
+            <div class="menu-item">
+                <span>Torpedo Burger - $64</span>
+                <button onclick="addToOrder('Torpedo Burger', 64, this)">Lisa</button>
+            </div>
+            <div class="menu-item">
+                <span>Heartstopper Burger - $84</span>
+                <button onclick="addToOrder('Heartstopper Burger', 84, this)">Lisa</button>
+            </div>
+            <div class="menu-item">
+                <span>Vegan Burger - $63</span>
+                <button onclick="addToOrder('Vegan Burger', 63, this)">Lisa</button>
+            </div>
+            <div class="menu-item">
+                <span>Friikartul - $63</span>
+                <button onclick="addToOrder('Friikartul', 63, this)">Lisa</button>
+            </div>
+            <h2>JOOGID</h2>
+            <div class="menu-item">
+                <span>Limonaad - $45</span>
+                <button onclick="addToOrder('Limonaad', 45, this)">Lisa</button>
+            </div>
+            <div class="menu-item">
+                <span>Maasika-piimakokteil - $65</span>
+                <button onclick="addToOrder('Maasika-piimakokteil', 65, this)">Lisa</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Tellimus</h2>
+        <ul id="order-list" class="order-list"></ul>
+        <div class="total">Kokku: <span id="total-price">0.00$</span></div>
+        <div class="summary">
+            Tänane kogusumma: <span id="daily-total">0.00$</span>
+            <button onclick="resetDailyTotal()">Nulli Päeva Summa</button>
+        </div>
+        <button onclick="resetOrder()" style="background: #007bff; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Nulli Tellimus</button>
+    </div>
+    <script>
+        const order = [];
+        let dailyTotal = 0;
+
+        function addToOrder(item, price, button) {
+            const menuItem = button.parentElement.querySelector('span');
+            createFlyEffect(menuItem);
+            const existingItem = order.find(orderItem => orderItem.name === item);
+
+            if (existingItem) {
+                existingItem.quantity++;
+                existingItem.total += price;
+            } else {
+                order.push({ name: item, price: price, quantity: 1, total: price });
+            }
+
+            dailyTotal += price;
+            updateOrderList();
+            updateDailyTotal();
+        }
+
+        function createFlyEffect(element) {
+            const fly = document.createElement('div');
+            fly.className = 'fly';
+            fly.textContent = element.textContent;
+            const rect = element.getBoundingClientRect();
+            fly.style.left = `${rect.left}px`;
+            fly.style.top = `${rect.top}px`;
+            document.body.appendChild(fly);
+            setTimeout(() => {
+                fly.remove();
+            }, 5000);
+        }
+
+        function removeFromOrder(item) {
+            const itemIndex = order.findIndex(orderItem => orderItem.name === item);
+            if (itemIndex !== -1) {
+                const existingItem = order[itemIndex];
+                dailyTotal -= existingItem.price;
+                if (existingItem.quantity > 1) {
+                    existingItem.quantity--;
+                    existingItem.total -= existingItem.price;
+                } else {
+                    order.splice(itemIndex, 1);
+                }
+            }
+            updateOrderList();
+            updateDailyTotal();
+        }
+
+        function updateOrderList() {
+            const orderList = document.getElementById('order-list');
+            const totalPrice = document.getElementById('total-price');
+
+            orderList.innerHTML = '';
+            let total = 0;
+
+            order.forEach(item => {
+                total += item.total;
+                const listItem = document.createElement('li');
+                listItem.textContent = `${item.name} - ${item.quantity} x ${item.price.toFixed(2)}$ = ${item.total.toFixed(2)}$`;
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Eemalda';
+                removeButton.onclick = () => removeFromOrder(item.name);
+                listItem.appendChild(removeButton);
+
+                orderList.appendChild(listItem);
+            });
+
+            totalPrice.textContent = `${total.toFixed(2)}$`;
+        }
+
+        function updateDailyTotal() {
+            const dailyTotalElement = document.getElementById('daily-total');
+            dailyTotalElement.textContent = `${dailyTotal.toFixed(2)}$`;
+        }
+
+        function resetOrder() {
+            order.length = 0; // Tühjenda massiiv
+            updateOrderList();
+        }
+
+        function resetDailyTotal() {
+            dailyTotal = 0;
+            updateDailyTotal();
+        }
+    </script>
+</body>
+</html>
