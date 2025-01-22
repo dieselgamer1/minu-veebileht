@@ -9,7 +9,7 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+            background: #000;
             color: #333;
             display: flex;
             flex-direction: row;
@@ -18,6 +18,7 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+
         header {
             background: #333;
             color: white;
@@ -28,6 +29,7 @@
             top: 0;
             z-index: 1000;
         }
+
         .radio-player {
             margin-top: 10px;
             padding: 10px;
@@ -35,17 +37,43 @@
             border-radius: 10px;
             text-align: center;
         }
+
         .radio-player audio {
             width: 100%;
             height: 40px;
         }
+
+        .iframe-container {
+            width: 75px;
+            height: 30px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            position: absolute;
+            top: 36px;
+            left: 20px;
+            z-index: 2000;
+        }
+
+        iframe {
+            width: 1200px;
+            height: 800px;
+            transform: scale(1.5);
+            transform-origin: 50% 10%;
+            border: none;
+            position: absolute;
+            top: -450px;
+            left: 200px;
+        }
+
         h1 {
             margin: 0;
             font-size: 2.5em;
         }
+
         .container {
             margin-top: 140px;
-            background: white;
+            background: #3a3a3a;
+            color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -53,6 +81,13 @@
             max-width: 45%;
             position: relative;
         }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .menu-item {
             margin: 15px 0;
             display: flex;
@@ -60,9 +95,11 @@
             align-items: center;
             position: relative;
         }
+
         .menu-item span {
             font-size: 1.2em;
         }
+
         .menu-item button {
             background: #28a745;
             color: white;
@@ -73,18 +110,39 @@
             cursor: pointer;
             transition: background 0.3s, transform 0.3s;
         }
+
         .menu-item button:hover {
             background: #218838;
+            transform: scale(1.1);
         }
+
+        .next-page-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 0.9em;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .next-page-button:hover {
+            background: #0056b3;
+        }
+
         h2 {
             color: #007BFF;
             margin-top: 30px;
         }
+
         .order-list {
             margin-top: 20px;
             list-style: none;
             padding: 0;
         }
+
         .order-list li {
             display: flex;
             justify-content: space-between;
@@ -93,6 +151,7 @@
             padding: 10px;
             border-bottom: 1px solid #ddd;
         }
+
         .order-list button {
             background: #dc3545;
             color: white;
@@ -103,9 +162,11 @@
             cursor: pointer;
             transition: background 0.3s;
         }
+
         .order-list button:hover {
             background: #c82333;
         }
+
         .total {
             margin-top: 20px;
             font-size: 1.5em;
@@ -113,16 +174,19 @@
             color: red;
             text-align: right;
         }
+
         .summary {
             margin-top: 20px;
             font-size: 1.2em;
             font-weight: bold;
             text-align: left;
-            background: #f8f9fa;
+            background: #505050;
+            color: white;
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
         }
+
         .summary button {
             background: #007bff;
             color: white;
@@ -132,18 +196,22 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
         .added-effect {
             animation: addedEffect 0.5s ease-out;
         }
+
         @keyframes addedEffect {
             0% {
                 transform: scale(1);
                 background-color: #28a745;
             }
+
             50% {
                 transform: scale(1.2);
                 background-color: #45c463;
             }
+
             100% {
                 transform: scale(1);
                 background-color: #28a745;
@@ -160,9 +228,15 @@
                 Teie brauser ei toeta raadiomängijat.
             </audio>
         </div>
+        <div class="iframe-container">
+            <iframe id="playerFrame" src="https://servers.fivem.net/servers/detail/r9jb6x"></iframe>
+        </div>
     </header>
     <div class="container">
-        <h2>Menüü</h2>
+        <div class="menu-header">
+            <h2>Menüü</h2>
+            <button class="next-page-button" onclick="navigateTo('nextpage.html')">Järgmine leht</button>
+        </div>
         <div id="menu">
             <div class="menu-item">
                 <span>Bleeder Burger - $65</span>
@@ -187,6 +261,15 @@
             <div class="menu-item">
                 <span>Friikartul - $63</span>
                 <button onclick="addToOrder('Friikartul', 63, this)">Lisa</button>
+            </div>
+            <h2>Einete Eripakkumised</h2>
+            <div class="menu-item">
+                <span>Super Burgeri Eine - $200 <small>(Heartstopper Burger, Friikartulit, Piimakokteil)</small></span>
+                <button onclick="addToOrder('Super Burgeri Eine', 200, this)">Lisa</button>
+            </div>
+            <div class="menu-item">
+                <span>Laste Eine - $150 <small>(Bleeder Burger, Friikartul, Limonaad)</small></span>
+                <button onclick="addToOrder('Laste Eine', 150, this)">Lisa</button>
             </div>
             <h2>JOOGID</h2>
             <div class="menu-item">
@@ -223,7 +306,17 @@
                     radio.play();
                 }
             }, { once: true });
+
+            // Refresh player count iframe
+            setInterval(() => {
+                const iframe = document.getElementById('playerFrame');
+                iframe.src = iframe.src;
+            }, 60000);
         });
+
+        function navigateTo(url) {
+            window.location.href = url;
+        }
 
         function addToOrder(item, price, button) {
             const existingItem = order.find(orderItem => orderItem.name === item);
@@ -239,7 +332,6 @@
             updateOrderList();
             updateDailyTotal();
 
-            // Add effect to button
             button.classList.add('added-effect');
             setTimeout(() => button.classList.remove('added-effect'), 500);
         }
